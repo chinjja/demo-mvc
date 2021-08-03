@@ -34,9 +34,9 @@ public interface UserService {
 	@PreAuthorize("isAuthenticated() and #user.email == principal.username")
 	public void delete(@Valid User user);
 
-	@PostAuthorize("isAuthenticated() and (returnObject != null and returnObject.email == principal.username)")
+	@PostAuthorize("isAuthenticated() and returnObject?.email == principal.username")
 	public User byId(Long id);
 
-	@PostAuthorize("isAuthenticated() and (returnObject != null and returnObject.email == principal.username)")
+	@PostAuthorize("isAuthenticated() and returnObject?.email == principal.username")
 	public User byEmail(String email);
 }
