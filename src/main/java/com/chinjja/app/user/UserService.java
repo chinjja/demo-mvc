@@ -19,6 +19,9 @@ public interface UserService {
 	public User create(@Valid UserCreateDto dto);
 	
 	@Transactional
+	public void init();
+	
+	@Transactional
 	@PreAuthorize("isAuthenticated() and #user.email == principal.username")
 	public User update(@Valid User user, @Valid UserUpdateDto dto);
 	

@@ -29,6 +29,17 @@ public class UserServiceImpl implements UserService {
 	private final ModelMapper mapper = new ModelMapper() {{
 		getConfiguration().setSkipNullEnabled(true);
 	}};
+
+	@Override
+	public void init() {
+		if(userRepository.count() == 0L) {
+			create(UserCreateDto.builder()
+					.email("root@user.com")
+					.password("12345678")
+					.name("root")
+					.build());
+		}
+	}
 	
 	@Override
 	public User create(@Valid UserCreateDto dto) {
