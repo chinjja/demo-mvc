@@ -26,7 +26,7 @@ public interface UserService {
 	public User update(@Valid User user, @Valid UserUpdateDto dto);
 	
 	@Transactional
-	@PreAuthorize("isAuthenticated() and #user.email == principal.username")
+	@PreAuthorize("isFullyAuthenticated() and #user.email == principal.username")
 	public User updatePassword(@Valid User user, @Valid UserPasswordDto dto);
 	
 	@Transactional
